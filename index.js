@@ -5,16 +5,16 @@ const dotenv = require('dotenv').config();
 var morgan = require('morgan');
 
 const userController = require('./controllers/userController');
-
+const noteController = require('./controllers/noteController');
 
 
 const app = express();
 app.use(morgan('tiny'));
-
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.post('/registerUser',userController.register);
+app.post('/post',noteController.post);
 
 
 mongoose.connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
